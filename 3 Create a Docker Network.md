@@ -2,8 +2,6 @@
 
 This tutorial will demonstrate how Docker networking works, specifically focusing on port mapping concepts illustrated in the image. We'll create a practical example to show how traffic flows from your host machine, through Docker's networking components, and to containers.
 
-
-
 ## Understanding the Diagram
 
 The diagram shows:
@@ -15,7 +13,6 @@ The diagram shows:
 6. Traffic flow showing both inbound (to container) and outbound (from container) requests
 
 ## Tutorial: Demonstrating Docker Port Mapping
-
 
 ### Prerequisites
 - Docker installed on your system
@@ -43,12 +40,10 @@ docker network inspect demo-network
 ### Part 2: Creating and Connecting Containers
 
 #### Container 1: Web Server (Similar to Container 1 in the diagram)
-
+##### Run an nginx container that will serve web content on port 80
 ```bash
-# Run an nginx container that will serve web content on port 80
 docker run -d --name web-server --network demo-network -p 10520:80 nginx:latest
 ```
-
 This command:
 - Creates a container named "web-server"
 - Connects it to our demo-network
