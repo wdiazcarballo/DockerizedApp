@@ -21,9 +21,8 @@ The diagram shows:
 ### Part 1: Setting Up Our Environment
 
 First, let's create a simple network setup that reflects the diagram:
-
+#### Create a custom bridge network with a specific subnet
 ```bash
-# Create a custom bridge network with a specific subnet
 docker network create --driver bridge --subnet=172.16.23.0/24 demo-network
 ```
 
