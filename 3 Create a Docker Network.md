@@ -2,6 +2,8 @@
 
 This tutorial will demonstrate how Docker networking works, specifically focusing on port mapping concepts illustrated in the image. We'll create a practical example to show how traffic flows from your host machine, through Docker's networking components, and to containers.
 
+
+
 ## Understanding the Diagram
 
 The diagram shows:
@@ -13,6 +15,7 @@ The diagram shows:
 6. Traffic flow showing both inbound (to container) and outbound (from container) requests
 
 ## Tutorial: Demonstrating Docker Port Mapping
+
 
 ### Prerequisites
 - Docker installed on your system
@@ -26,13 +29,17 @@ First, let's create a simple network setup that reflects the diagram:
 docker network create --driver bridge --subnet=172.16.23.0/24 demo-network
 ```
 
-Now let's verify the network was created:
+#### Now let's verify the network was created:
 
 ```bash
 docker network ls
+```
+#### ตรวจสอบว่า "demo-network" ตั้งค่าไว้อย่างไร
+```bash
 docker network inspect demo-network
 ```
-
+#### อธิบายผลลัพธ์
+ผลลัพธ์นี้แสดงรายละเอียดของเครือข่ายเสมือนที่นักศึกษาสร้างขึ้นในระบบ Docker ชื่อ "demo-network" นักศึกษาอาจนึกภาพเครือข่ายนี้เหมือนสร้างถนนส่วนตัวเพื่อให้คอนเทนเนอร์ (หรือบ้านเล็กๆ) ของนักศึกษาใช้สื่อสารกัน เครือข่ายนี้ถูกสร้างเมื่อวันที่ 31 มีนาคม 2025 และใช้ระบบ "bridge" ซึ่งเป็นเหมือนสะพานที่เชื่อมระหว่างคอนเทนเนอร์กับโลกภายนอก นักศึกษาได้กำหนดให้เครือข่ายนี้ใช้ที่อยู่ IP ในช่วง 172.16.23.0 ถึง 172.16.23.255 (คล้ายกับการจองเลขบ้านในหมู่บ้านของนักศึกษา) ขณะนี้ยังไม่มีคอนเทนเนอร์หรือ "บ้าน" ใดๆ ตั้งอยู่บนถนนนี้ ซึ่งเห็นได้จากส่วน "Containers" ที่ว่างเปล่า เครือข่ายนี้ไม่ได้ถูกล็อกเป็นส่วนตัวภายใน (internal) คอนเทนเนอร์ที่อยู่ในเครือข่ายนี้จึงสามารถเชื่อมต่อกับอินเทอร์เน็ตหรือเครือข่ายอื่นๆ ได้ ทั้งหมดนี้ทำให้นักศึกษามีพื้นที่เฉพาะสำหรับให้คอนเทนเนอร์ของนักศึกษาสื่อสารกันอย่างปลอดภัยและเป็นระเบียบ
 ### Part 2: Creating and Connecting Containers
 
 #### Container 1: Web Server (Similar to Container 1 in the diagram)
