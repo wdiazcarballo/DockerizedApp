@@ -1,3 +1,4 @@
+![[DockerPrivateNetworkExample.png]]
 # Docker Networking and Port Mapping Tutorial
 
 This tutorial will demonstrate how Docker networking works, specifically focusing on port mapping concepts illustrated in the image. We'll create a practical example to show how traffic flows from your host machine, through Docker's networking components, and to containers.
@@ -50,43 +51,53 @@ This command:
 - Maps port 10520 on the host to port 80 in the container (similar to the diagram's inbound request)
 
 #### Container 2: Observer Container
+##### Run an Alpine container that we'll use to observe network traffic
 
 ```bash
-# Run an Alpine container that we'll use to observe network traffic
 docker run -d --name observer --network demo-network alpine sleep infinity
 ```
 
 ### Part 3: Examining the Network Configuration
 
 Let's examine what Docker has set up:
+##### List running containers with network info
 
 ```bash
-# List running containers with network info
 docker ps
+```
+
+```bash
 docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' web-server
+```
+
+```bash
 docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' observer
 ```
 
 Now, let's check the docker-proxy process (the component in the diagram responsible for port forwarding):
-
+##### On Windows
 ```bash
-# On Linux
-ps aux | grep docker-proxy
-
-# On Windows
 netstat -ano | findstr 10520
 ```
 
 You should see a docker-proxy process listening on port 10520, forwarding traffic to the container.
 
+Example output
+```bash
+(base) PS C:\Users\TU-Lampang-01> netstat -ano | findstr 10520
+  TCP    0.0.0.0:10520          0.0.0.0:0              LISTENING       7580
+  TCP    [::]:10520             [::]:0                 LISTENING       7580
+  TCP    [::1]:10520            [::]:0                 LISTENING       30824
+```
+
+คำสั่ง `netstat -ano | findstr 10520` เป็นคำสั่งที่ใช้ใน Windows PowerShell หรือ Command Prompt เพื่อตรวจสอบว่า port หมายเลข `10520` กำลังถูกใช้งานอยู่หรือไม่ และใช้โดย process ใดบ้าง
 ### Part 4: Testing Inbound Connection Flow
 
 Let's trace the path of a request as shown in the diagram:
 
 1. **Inbound request to exposed port** (Host to Container)
-
+##### Access the web server through the mapped port
 ```bash
-# Access the web server through the mapped port
 curl http://localhost:10520
 ```
 
@@ -107,17 +118,15 @@ docker exec -it observer sh -c "apk add --no-cache curl"
 ```
 
 2. Make a request from the observer container to the web server:
-
+###### This simulates internal container-to-container communication
 ```bash
-# This simulates internal container-to-container communication
 docker exec -it observer curl http://web-server:80
 ```
 
 3. Make a request from the container to an external site:
-
+##### This simulates outbound traffic from container to internet
 ```bash
-# This simulates outbound traffic from container to internet
-docker exec -it observer curl https://example.com
+docker exec -it observer curl https://www.example.com
 ```
 
 Here's what happens (following the green arrows in the diagram):
@@ -127,40 +136,46 @@ Here's what happens (following the green arrows in the diagram):
 ### Part 6: Visualizing Network Traffic
 
 To better visualize what's happening, let's run a continuous ping and see the network path:
-
+###### Install tools in observer container
 ```bash
-# Install tools in observer container
 docker exec -it observer sh -c "apk add --no-cache iputils tcptraceroute"
-
-# Trace route to the web server
+```
+###### Trace route to the web server
+```bash
 docker exec -it observer traceroute web-server
-
-# If external access is needed
+```
+###### If external access is needed
+```bash
 docker exec -it observer traceroute example.com
 ```
 
 ### Part 7: Advanced Port Mapping Demonstration
 
 Let's set up multiple port mappings to better understand the concept:
+###### Stop and remove existing web-server
+```bash
+docker stop web-server
+```
 
 ```bash
-# Stop and remove existing web-server
-docker stop web-server
 docker rm web-server
+```
 
-# Create a new container with multiple port mappings
+##### Create a new container with multiple port mappings
+```bash
 docker run -d --name multi-port-server --network demo-network \
   -p 10520:80 -p 10521:8080 \
   nginx:latest
 ```
 
 Now let's modify the nginx container to also listen on port 8080:
+##### Copy the default nginx config to the container
+```bash
+docker cp multi-port-server:/etc/nginx/conf.d/default.conf ./default.conf
+```
+##### Add a second server block for port 8080
 
 ```bash
-# Copy the default nginx config to the container
-docker cp multi-port-server:/etc/nginx/conf.d/default.conf ./default.conf
-
-# Add a second server block for port 8080
 cat > ./default.conf << EOF
 server {
     listen       80;
@@ -186,29 +201,36 @@ server {
     }
 }
 EOF
+```
 
-# Copy the updated config back and reload nginx
+##### Copy the updated config back and reload nginx
+```bash
 docker cp ./default.conf multi-port-server:/etc/nginx/conf.d/default.conf
+```
+
+```bash
 docker exec multi-port-server nginx -s reload
 ```
 
 Now test both port mappings:
+##### Test the original port mapping (10520 -> 80)
 
 ```bash
-# Test the original port mapping (10520 -> 80)
 curl http://localhost:10520
-
-# Test the new port mapping (10521 -> 8080)
+```
+##### Test the new port mapping (10521 -> 8080)
+```
 curl http://localhost:10521
 ```
-
 ### Part 8: Understanding the Docker Proxy in Detail
 
 The docker-proxy component in the diagram is crucial for port mapping. Let's examine it more closely:
+##### For each mapped port, there's a docker-proxy process
+```bash
+ps aux | grep docker-proxy  # On Linux
+```
 
 ```bash
-# For each mapped port, there's a docker-proxy process
-ps aux | grep docker-proxy  # On Linux
 netstat -ano | findstr docker  # On Windows
 ```
 
@@ -220,8 +242,17 @@ Let's clean up our resources:
 
 ```bash
 docker stop multi-port-server observer
+```
+
+```bash
 docker rm multi-port-server observer
+```
+
+```bash
 docker network rm demo-network
+```
+
+```bash
 rm ./default.conf
 ```
 
@@ -237,4 +268,4 @@ The tutorial has simulated all components in the diagram:
 6. **Inbound requests**: We tested these with curl from host to container
 7. **Outbound requests**: We tested these from container to outside world
 
-By following this tutorial, you've experienced firsthand how Docker networking and port mapping work, just as illustrated in the diagram.
+

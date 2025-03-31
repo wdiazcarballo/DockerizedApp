@@ -1,0 +1,207 @@
+{
+  "main": {
+    "id": "ed420c74e9dea737",
+    "type": "split",
+    "children": [
+      {
+        "id": "b9ec5002f7d7e804",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5e3d07e01f094be9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2 DockerLab.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2 DockerLab"
+            }
+          },
+          {
+            "id": "058c528c1745b6a3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "bb7aa2f224a67f8b",
+    "type": "split",
+    "children": [
+      {
+        "id": "ad70ed1314439475",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e671cd3d50002365",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "157f37796b33c741",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "d1e7d1e8502d0e0e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "81445ed23c66254c",
+    "type": "split",
+    "children": [
+      {
+        "id": "45a9e965ba58a86b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9bc0b5f5d2feec01",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "README.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for README"
+            }
+          },
+          {
+            "id": "7f54c0a893659ecf",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "README.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from README"
+            }
+          },
+          {
+            "id": "1fcf953bbad9ec47",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "e5295404ccd7c7c8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "README.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of README"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "058c528c1745b6a3",
+  "lastOpenFiles": [
+    "3 Create a Docker Network.md",
+    "2 DockerLab.md",
+    "1 Docker Life Cycle.md",
+    "README.md",
+    "assets/CD-MainConceptsAndTool-Th.png",
+    "assets/CD-MainConceptsAndTool-Th.png.crdownload",
+    "assets/CD-RelationshipMap-Th.png",
+    "assets/CD-RelationshipMap-Th.png.crdownload",
+    "assets/ContinuousDeliveryConcept-TH.png",
+    "assets/ContinuousDeliveryConcept-TH.png.crdownload",
+    "assets/ContinuousDeliveryConcept-EN.png",
+    "assets/ContinuousDeliveryConcept-EN.png.crdownload",
+    "assets/DockerConceptExplained-TH.png",
+    "assets/DockerConceptExplained-TH.png.crdownload",
+    "assets/DockerConceptExplained-EN.png",
+    "assets/DockerConceptExplained-EN.png.crdownload",
+    "assets/DockerPrivateNetworkExample.png",
+    "assets"
+  ]
+}
