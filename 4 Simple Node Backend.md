@@ -72,8 +72,8 @@ app.get('/about', (req, res) => {
 
 ---
 
-Would you like to:
-- Add HTML rendering?
-- Use a frontend (like React)?
-- Store data (with a database)?
-Let me know where you want to go next 🚀
+Next Step:
+- Add HTML rendering
+- Use a frontend (like React)
+- Store data (with a database)
+- Add in Docker
