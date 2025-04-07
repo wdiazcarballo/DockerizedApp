@@ -1,3 +1,8 @@
+# ทบทวน: การสร้างแอปพลิเคชัน
+## CR: Modern Full-Stack React Projects 
+https://github.com/PacktPublishing/Modern-Full-Stack-React-Projects.git
+
+
 ```mermaid
 flowchart TD
     subgraph "Frontend (React + Vite)"
